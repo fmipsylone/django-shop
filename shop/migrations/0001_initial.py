@@ -6,14 +6,19 @@ import filer.fields.file
 
 
 class Migration(migrations.Migration):
-
+    """
+    .. todo:: Implement a way to get the last migration
+    of the AUTH_USER_MODEL application,
+    and specify it in Migration.dependencies property
+    in place of fixing to '0001_initial'.
+    """
     AUTH_APP_LABEL = ".".join([
         "{}".format(v).lower() for v in settings.AUTH_USER_MODEL.split('.')[:-1]])
 
     dependencies = [
         ('filer', '0002_auto_20150606_2003'),
         ('post_office', '0002_add_i18n_and_backend_alias'),
-        (AUTH_APP_LABEL, '0001_initial'),
+        (AUTH_APP_LABEL, '0001_initial'),  # TODO: See :py:class: `shop.migrations.0001_initial.Migration` docstring  # NOQA
     ]
 
     customer_bases = (settings.AUTH_USER_MODEL.lower(), )
